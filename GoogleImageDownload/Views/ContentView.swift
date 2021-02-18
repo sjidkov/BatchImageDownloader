@@ -123,21 +123,21 @@ struct ContentView: View {
                                         }
                                         clearResults()
                                     }) {
-                                        Image(systemName: "xmark.circle.fill")
+                                        Image(systemName: "xmark.circle.fill").font(.title3)
                                             .foregroundColor(.red)
                                     }
                                 } else {
                                     Button(action: {
                                         self.showingDetail.toggle()
                                     }) {
-                                        Image(systemName: "info.circle.fill")
-                                            .renderingMode(.original)
+                                        Image(systemName: "info.circle.fill").renderingMode(.original).font(.title3)
+                                            
                                     }
                                 }
                                 Button(action: {
                                     self.showActionView.toggle()
                                 }) {
-                                    Image(systemName: "ellipsis.circle")
+                                    Image(systemName: "ellipsis.circle").font(.title3)
                                         .foregroundColor(.orange)
                                 }
                             }.padding(.trailing)

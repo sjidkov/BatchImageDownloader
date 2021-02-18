@@ -14,21 +14,12 @@ struct TitleCard: View {
                 //Title HStack -> Two color
                 HStack() {
                     Image(systemName: "magnifyingglass").foregroundColor(.titleColor1)
-//                    Spacer()
-//                    Text("Google").minimumScaleFactor(0.5).lineLimit(1).foregroundColor(.titleColor2)
-//                    Spacer()
                 }.font(.system(size: 60, weight: .semibold, design: .rounded))
                 HStack() {
                     Image(systemName: "photo").foregroundColor(.titleColor3)
-//                    Spacer()
-//                    Text("Image").minimumScaleFactor(0.5).lineLimit(1).foregroundColor(.titleColor4)
-//                    Spacer()
                 }.font(.system(size: 60, weight: .semibold, design: .rounded))
                 HStack() {
                     Image(systemName: "square.and.arrow.down.on.square").foregroundColor(.titleColor5)
-//                    Spacer()
-//                    Text("Download").minimumScaleFactor(0.5).lineLimit(1).foregroundColor(.titleColor6)
-//                    Spacer()
                 }.font(.system(size: 60, weight: .semibold, design: .rounded))
         }
     }

@@ -55,10 +55,12 @@ struct FullImageView: View {
             .scaleEffect(scale)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    HStack(spacing: 20) {
                     centerImageButton
                     zoomInButton
                     zoomOutButton
                     shareImageButton
+                }
             }
         }
     }
@@ -72,7 +74,7 @@ struct FullImageView: View {
                 self.viewState = CGSize.zero
             }
         }) {
-            Image(systemName: "viewfinder.circle")
+            Image(systemName: "viewfinder.circle").font(.title3).foregroundColor(.titleColor1)
         }
     }
     
@@ -86,7 +88,7 @@ struct FullImageView: View {
                 }
             }
         }) {
-            Image(systemName: "arrow.up.left.and.arrow.down.right.circle")
+            Image(systemName: "arrow.up.left.and.arrow.down.right.circle").font(.title3).foregroundColor(.titleColor2)
         }
     }
     
@@ -100,7 +102,7 @@ struct FullImageView: View {
                 }
             }
         }) {
-            Image(systemName: "arrow.down.forward.and.arrow.up.backward.circle")
+            Image(systemName: "arrow.down.forward.and.arrow.up.backward.circle").font(.title3).foregroundColor(.titleColor4)
         }
     }
     
@@ -108,7 +110,7 @@ struct FullImageView: View {
         Button(action: {
             withAnimation {  shareButtonAction() }
         }) {
-            Image(systemName: "square.and.arrow.up")
+            Image(systemName: "square.and.arrow.up").font(.title3).foregroundColor(.titleColor6)
         }
     }
 }

@@ -76,7 +76,7 @@ struct ImageCard: View {
         Button(action: {
             withAnimation {  self.showingFullImage.toggle() }
     }) {
-            Image(systemName: "arrow.up.left.and.arrow.down.right")
+            Image(systemName: "arrow.up.left.and.arrow.down.right").font(.title3).foregroundColor(.titleColor1)
         }
     }
     
@@ -84,7 +84,7 @@ struct ImageCard: View {
         Button(action: {
         withAnimation {  self.showingWebLink.toggle() }
     }) {
-            Image(systemName: "globe")
+            Image(systemName: "globe").font(.title3).foregroundColor(.titleColor2)
         }
     }
     
@@ -92,7 +92,7 @@ struct ImageCard: View {
         Button(action: {
             withAnimation {  shareButtonAction() }
     }) {
-            Image(systemName: "square.and.arrow.up")
+            Image(systemName: "square.and.arrow.up").font(.title3).foregroundColor(.titleColor4)
         }
     }
     
@@ -100,7 +100,7 @@ struct ImageCard: View {
         Button(action: {
         withAnimation {  deleteButtonAction() }
     }) {
-            Image(systemName: "trash")
+            Image(systemName: "trash").font(.title3).foregroundColor(.titleColor6)
         }
     }
 }
