@@ -35,124 +35,194 @@ struct ContentView: View {
         NavigationView() {
             GeometryReader { geo in
                 VStack() {
-                    NavigationLink(destination: BrowserView(model: WebViewModel(link: browserLink, type: "website", name: "google")), isActive: $showingGoogleSearch) { EmptyView() }
+                    //to google search webview
+                    searchWebViewNavLink
                     if selectedItem != nil {
-                        NavigationLink(destination: FullImageView(image: UIImage(data: selectedItem!.imageData ?? Data()) ?? UIImage(), shareButtonAction: {
-                            actionSheet(data: selectedItem!.imageData)
-                        }), isActive: $showingFullImage) { EmptyView() }
-                        NavigationLink(destination: BrowserView(model: WebViewModel(link: selectedItem!.linkURLString ?? "error", type: "website", name: selectedItem!.title ?? "error")), isActive: $showingWebLink) { EmptyView() }
+                        //to full screen image view
+                        fullScreenImageNavLink
+                        //to image artible link webview
+                        imageArticleNavLink
                     }
-                    
-                    //show Image results
-                    
+                    //image results
                     if items.count > 0 && showingSearchResults {
-                        ScrollView {
-                            LazyVStack(alignment: .center, spacing: 0) {
-                                HStack() {
-                                    Spacer()
-                                    Text("\(items.count)").foregroundColor(.titleColor3)
-                                    Text("images").foregroundColor(.titleColor5)
-                                    Text("found").foregroundColor(.titleColor1)
-                                    Spacer()
-                                }.font(.largeTitle).padding()
-                                ForEach(items) { item in
-                                    if dataHasImage(data: item.imageData) {
-                                        
-                                        ImageCard(shareButtonAction: {
-                                            actionSheet(data: item.imageData)
-                                        }, deleteButtonAction: {
-                                            deleteItem(item: item)
-                                        }, item: item, selectedItem: $selectedItem, showingFullImage: $showingFullImage, showingWebLink: $showingWebLink).padding(5)
-                                    }
-                                }
-                            }.id(UUID())
-                        }
+                        imageSearchResultsView
                     } else {
-                        TitleCard()//.frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                        //title view
+                        titleView
                     }
                 }
                 .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
-                
                 }
             .onAppear {
-                print("main appeared")
                 self.showingGoogleSearch = false
             }
+            //how to use view
             .sheet(isPresented: $showingDetail) {
                 InfoView().padding()
                     }
             
+            //action sheet for google search and batch download
             .actionSheet(isPresented: $showActionView, content: {
                         self.extraFunctionsActionSheet
             })
+            
             .navigationBarTitleDisplayMode(.inline)
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                        HStack() {
-                        //Spacer()
-                           HStack() {
-                                ZStack() {
-                                    if !downloadingData {
-                                        Image(systemName: "magnifyingglass").foregroundColor(items.count > 0 ? .green : .gray)
-                                    } else {
-                                        ProgressView().progressViewStyle(CircularProgressViewStyle(tint: Color.yellow))//.padding()
-                                    }
-                                }
-                                
-                                TextField("search here...",
-                                          text: $searchTerm,
-                                          
-                                          onEditingChanged: {
-                                            _ in print("changed")
-                                            print("\(searchTerm)\(browserLink)")
-                                          },
-                                          onCommit: {
-                                            print("commit")
-                                            clearResults()
-                                            getResults()
-                                            setSearchURLString()
-                                          })//.padding([.leading, .trailing])
-                                Spacer()
-                           }.frame(width: UIScreen.main.bounds.size.width * 0.7)
-                            .padding([.all], 6)
-                            .clipShape(Capsule())
-                            .overlay(
-                                Capsule()
-                                    .stroke(downloadingData ? Color.yellow : (items.count > 0 ? Color.green : Color.blue), lineWidth: 1)
-                            )
-                            Spacer()
-                            HStack() {
-                                if items.count > 0 {
-                                    Button(action: {
-                                        if !searchTerm.isEmpty {
-                                            searchTerm = ""
-                                        }
-                                        clearResults()
-                                    }) {
-                                        Image(systemName: "xmark.circle.fill").font(.title3)
-                                            .foregroundColor(.red)
-                                    }
-                                } else {
-                                    Button(action: {
-                                        self.showingDetail.toggle()
-                                    }) {
-                                        Image(systemName: "info.circle.fill").renderingMode(.original).font(.title3)
-                                            
-                                    }
-                                }
-                                Button(action: {
-                                    self.showActionView.toggle()
-                                }) {
-                                    Image(systemName: "ellipsis.circle").font(.title3)
-                                        .foregroundColor(.orange)
-                                }
-                            }.padding(.trailing)
-                        }.padding(.leading).frame(width: UIScreen.main.bounds.size.width)
+                    toolBar
                 }
             }
         }
     }
     
+    //MARK : - view components
+    
+    //navLinks
+    var searchWebViewNavLink: some View {
+        NavigationLink(destination: BrowserView(model: WebViewModel(link: browserLink, type: "website", name: "google")), isActive: $showingGoogleSearch) { EmptyView() }
+    }
+    
+    var fullScreenImageNavLink: some View {
+        NavigationLink(destination: FullImageView(image: UIImage(data: selectedItem!.imageData ?? Data()) ?? UIImage(), shareButtonAction: {
+            actionSheet(data: selectedItem!.imageData)
+        }), isActive: $showingFullImage) { EmptyView() }
+    }
+    
+    var imageArticleNavLink: some View {
+        NavigationLink(destination: BrowserView(model: WebViewModel(link: selectedItem!.linkURLString ?? "error", type: "website", name: selectedItem!.title ?? "error")), isActive: $showingWebLink) { EmptyView() }
+    }
+    
+    //ScrollView
+    var imageSearchResultsView: some View {
+        ScrollView {
+            LazyVStack(alignment: .center, spacing: 0) {
+                HStack() {
+                    Spacer()
+                    Text("\(items.count)").foregroundColor(.titleColor3)
+                    Text("images").foregroundColor(.titleColor5)
+                    Text("found").foregroundColor(.titleColor1)
+                    Spacer()
+                }.font(.largeTitle).padding()
+                ForEach(items) { item in
+                    if dataHasImage(data: item.imageData) {
+                        ImageCard(shareButtonAction: {
+                            actionSheet(data: item.imageData)
+                        }, deleteButtonAction: {
+                            deleteItem(item: item)
+                        }, item: item, selectedItem: $selectedItem, showingFullImage: $showingFullImage, showingWebLink: $showingWebLink).padding(5)
+                    }
+                }
+            }
+        }
+    }
+    
+    //TitleView
+    var titleView: some View {
+        VStack {
+            //Title HStack -> Two color
+            HStack() {
+                Image(systemName: "magnifyingglass").foregroundColor(.titleColor1)
+            }.font(.system(size: 60, weight: .semibold, design: .rounded))
+            HStack() {
+                Image(systemName: "photo").foregroundColor(.titleColor3)
+            }.font(.system(size: 60, weight: .semibold, design: .rounded))
+            HStack() {
+                Image(systemName: "square.and.arrow.down.on.square").foregroundColor(.titleColor5)
+            }.font(.system(size: 60, weight: .semibold, design: .rounded))
+        }
+    }
+    
+    //toolbar
+    var toolBar: some View {
+        HStack() {
+            searchTextField
+            Spacer()
+            searchFieldButtons
+        }.padding(.leading)
+        .frame(width: UIScreen.main.bounds.size.width)
+    }
+    
+    //tool bar subviews
+    var searchTextField: some View {
+        HStack() {
+             ZStack() {
+                 if !downloadingData {
+                     Image(systemName: "magnifyingglass").foregroundColor(items.count > 0 ? .green : .gray)
+                 } else {
+                     ProgressView().progressViewStyle(CircularProgressViewStyle(tint: Color.yellow))//.padding()
+                 }
+             }
+             TextField("search here...",
+                       text: $searchTerm,
+                       
+                       onEditingChanged: {
+                         _ in print("changed")
+                         print("\(searchTerm)\(browserLink)")
+                       },
+                       onCommit: {
+                         print("commit")
+                         clearResults()
+                         setSearchURLStrings()
+                         getResults()
+                       })
+             Spacer()
+        }.frame(width: UIScreen.main.bounds.size.width * 0.7)
+         .padding([.all], 6)
+         .clipShape(Capsule())
+         .overlay(
+             Capsule()
+                 .stroke(downloadingData ? Color.yellow : (items.count > 0 ? Color.green : Color.blue), lineWidth: 1)
+         )
+
+    }
+    
+    var searchFieldButtons: some View {
+        HStack() {
+            if items.count > 0 {
+                clearResultsButton
+            } else {
+                infoButton
+            }
+            showExtraMenuButton
+        }.padding(.trailing)
+    }
+    
+    var clearResultsButton: some View {
+        Button(action: {
+            if !searchTerm.isEmpty {
+                searchTerm = ""
+            }
+            clearResults()
+        }) {
+            Image(systemName: "xmark.circle.fill")
+                .font(.title3)
+                .foregroundColor(.red)
+        }
+    }
+    
+    var infoButton: some View {
+        Button(action: {
+            self.showingDetail.toggle()
+        }) {
+            Image(systemName: "info.circle.fill")
+                .renderingMode(.original)
+                .font(.title3)
+                
+        }
+    }
+    
+    var showExtraMenuButton: some View {
+        Button(action: {
+            self.showActionView.toggle()
+        }) {
+            Image(systemName: "ellipsis.circle")
+                .font(.title3)
+                .foregroundColor(.orange)
+        }
+    }
+    
+    //action sheet for batch download and manual google search
     var extraFunctionsActionSheet: ActionSheet {
         var sheet: ActionSheet = ActionSheet(title: Text(""))
         if items.count > 0 {
@@ -284,26 +354,23 @@ struct ContentView: View {
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-    
-    func setSearchURLString() {
-        
+    func setSearchURLStrings() {
         if self.searchTerm != "" {
             let base = "https://www.google.ca/search?client=safari&q="
+            
+            //trim start of white spaces
             let trimmed = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines)
-            let formatted = trimmed.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
+            
+            //remove all non a-z 0-9 from search results
+            let pattern = "[^A-Za-z0-9]+"
+            let result = trimmed.replacingOccurrences(of: pattern, with: "", options: [.regularExpression])
+            
+            //remove all white spaces
+            let formatted = result.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
+            
+            //set search term
+            searchTerm = formatted
+            //set browser link
             browserLink =  base + formatted
         } else {
             browserLink = "https://www.google.ca/search?client=safari"
