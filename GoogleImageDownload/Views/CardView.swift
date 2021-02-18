@@ -21,36 +21,41 @@ struct CardView: View {
     var body: some View {
         //main VStack
         VStack(alignment: .leading) {
-            //Card title label
-            HStack {
-                Label {
-                    Text(labelTitle)
-                        .minimumScaleFactor(0.25)
-                        .font(.title3)
-                        .lineLimit(1)
-                        .foregroundColor(labelTitleColor)
-                    
-                } icon: {
-                    Image(systemName: labelImage)
-                        .minimumScaleFactor(0.25)
-                        .font(.title3)
-                        .foregroundColor(labelImageColor)
-                }
-                Spacer()
-            }
-            
-            //Text HStack
-            HStack {
-                Text(bodyText)
-                    .minimumScaleFactor(0.25)
-                    .font(.body)
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.leading)
-                Spacer()
-            }
+            label
+            text
         }
         .padding()
         .background(CardBackgroundView())
+    }
+    
+    var label: some View {
+        HStack {
+            Label {
+                Text(labelTitle)
+                    .minimumScaleFactor(0.25)
+                    .font(.title3)
+                    .lineLimit(1)
+                    .foregroundColor(labelTitleColor)
+                
+            } icon: {
+                Image(systemName: labelImage)
+                    .minimumScaleFactor(0.25)
+                    .font(.title3)
+                    .foregroundColor(labelImageColor)
+            }
+            Spacer()
+        }
+    }
+    
+    var text: some View {
+        HStack {
+            Text(bodyText)
+                .minimumScaleFactor(0.25)
+                .font(.body)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.leading)
+            Spacer()
+        }
     }
 }
 

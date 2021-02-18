@@ -11,7 +11,6 @@ import SwiftUI
 
 extension Color {
     //MARK: - View Colors
-    //main view background
     public static var myBackgroundColor: Color {
         return Color("backgroundColor")
         }

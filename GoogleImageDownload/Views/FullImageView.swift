@@ -22,7 +22,16 @@ struct FullImageView: View {
     let shareButtonAction: () -> Void
     
     var body: some View {
-        
+        imageView
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    toolBar
+                }
+            }
+    }
+    
+    //scalable image
+    var imageView: some View {
         Image(uiImage: image)
             .resizable()
             .aspectRatio(contentMode: .fit)
@@ -53,19 +62,20 @@ struct FullImageView: View {
                         }
             )
             .scaleEffect(scale)
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    HStack(spacing: 20) {
-                    centerImageButton
-                    zoomInButton
-                    zoomOutButton
-                    shareImageButton
-                }
-            }
+    }
+    
+    //Tool bar
+    var toolBar: some View {
+        HStack(spacing: 20) {
+            centerImageButton
+            zoomInButton
+            zoomOutButton
+            shareImageButton
         }
     }
     
-    //buttons
+    //Tool bar buttons
+    //centers image and resets scale
     var centerImageButton: some View   {
         Button(action: {
             withAnimation {
@@ -78,6 +88,7 @@ struct FullImageView: View {
         }
     }
     
+    //increases scale
     var zoomInButton: some View   {
         Button(action: {
             withAnimation {
@@ -92,6 +103,7 @@ struct FullImageView: View {
         }
     }
     
+    //decreases scale
     var zoomOutButton: some View   {
         Button(action: {
             withAnimation {
@@ -106,6 +118,7 @@ struct FullImageView: View {
         }
     }
     
+    //shows download/share single image action sheet
     var shareImageButton: some View   {
         Button(action: {
             withAnimation {  shareButtonAction() }

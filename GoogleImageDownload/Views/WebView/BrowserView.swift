@@ -21,33 +21,13 @@ struct BrowserView: View {
         GeometryReader { geometry in
             ZStack() {
                VStack() {
-                self.pageView
-                
-                HStack() {
-                    
-                    Button(action: {
-                            print("BrowserView: back button tapped")
-                        self.pageView?.goBack()
-                                }) {
-                        Image(systemName: "arrow.left").padding()
-                    }
-                    Spacer()
-                    Button(action: {
-                            print("BrowserView: forward button tapped")
-                        self.pageView?.goForward()
-                                }) {
-                    Image(systemName: "arrow.right")
-                    }
-                    Spacer()
-                    Button(action: {
-                            print("BrowserView: back button tapped")
-                        self.pageView?.reload()
-                                }) {
-                        Image(systemName: "arrow.clockwise").padding()
-                    }
-                    
-                }.frame(width: geometry.size.width, height: (geometry.size.height * 0.05) > 50 ? geometry.size.height * 0.05 : 50)}.opacity(self.model.hasLoadingError ? 0 : 1)
-            }.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+                pageView
+                navButtons
+                .frame(width: geometry.size.width, height: (geometry.size.height * 0.05) > 50 ? geometry.size.height * 0.05 : 50)}
+                .opacity(self.model.hasLoadingError ? 0 : 1)
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+            
             if self.model.hasLoadingError {
                 Text("Error")
                 }
@@ -59,6 +39,41 @@ struct BrowserView: View {
             }
         }
     
+    //view
+    //navigation buttons
+    var navButtons: some View {
+        HStack() {
+            backButton
+            Spacer()
+            forwardButton
+            Spacer()
+            reloadButton
+        }
+    }
+    
+    var backButton: some View {
+        Button(action: {
+            self.pageView?.goBack()
+                    }) {
+            Image(systemName: "arrow.left").padding()
+        }
+    }
+    
+    var forwardButton: some View {
+        Button(action: {
+            self.pageView?.goForward()
+                    }) {
+        Image(systemName: "arrow.right")
+        }
+    }
+    
+    var reloadButton: some View {
+        Button(action: {
+            self.pageView?.reload()
+                    }) {
+            Image(systemName: "arrow.clockwise").padding()
+        }
+    }
     
     func setPageView() {
         self.pageView = SwiftUIWebView(viewModel: model)

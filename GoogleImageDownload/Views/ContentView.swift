@@ -77,7 +77,6 @@ struct ContentView: View {
     }
     
     //MARK : - View Components
-    
     //navLinks
     var searchWebViewNavLink: some View {
         NavigationLink(destination: BrowserView(model: WebViewModel(link: browserLink, type: "website", name: "google")), isActive: $showingGoogleSearch) { EmptyView() }
@@ -110,7 +109,7 @@ struct ContentView: View {
                             actionSheet(data: item.imageData)
                         }, deleteButtonAction: {
                             deleteItem(item: item)
-                        }, item: item, selectedItem: $selectedItem, showingFullImage: $showingFullImage, showingWebLink: $showingWebLink).padding(5)
+                        }, item: item, showingFullImage: $showingFullImage, showingWebLink: $showingWebLink, selectedItem: $selectedItem).padding(5)
                     }
                 }
             }

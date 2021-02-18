@@ -30,6 +30,7 @@ struct PersistenceController {
 
     let container: NSPersistentContainer
 
+    //this container is set to inMemory and is used as a temp cache for searchResult data
     init(inMemory: Bool = true) {
         container = NSPersistentContainer(name: "GoogleImageDownload")
         if inMemory {

@@ -33,17 +33,14 @@ struct SwiftUIWebView: UIViewRepresentable {
     
     func goBack(){
         self.webView.goBack()
-        print("fired goBack")
     }
 
     func goForward(){
         self.webView.goForward()
-        print("fired goForward")
     }
     
     func reload(){
         self.webView.reload()
-        print("fired reload")
     }
     
 
@@ -53,7 +50,6 @@ struct SwiftUIWebView: UIViewRepresentable {
        return
     }
     
-    //model can be expanded to have a list of allowed websites and navigation rules.
     class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
         private var viewModel: WebViewModel
 
@@ -62,18 +58,11 @@ struct SwiftUIWebView: UIViewRepresentable {
 
         }
         
-        deinit {
-            print("Coordinator: deinit")
-        }
-        
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            print("WebView:didFinish: navigation finished \(self.viewModel.link)")
             self.viewModel.didFinishLoading = true
-            print(self.viewModel.didFinishLoading)
         }
         
         func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-            print("error with load!!!33")
             self.viewModel.hasLoadingError = true
         }
         
