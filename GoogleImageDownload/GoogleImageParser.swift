@@ -32,9 +32,15 @@ class GoogleImageParser {
     func getSearchURLString(searchTerm: String) {
         
         let base = "https://images.google.com/search?tbm=isch&q="
-        let trimmed = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines)
-        let formatted = trimmed.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
         
+        //trim start of white spaces
+        let trimmed = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines)
+        //remove all non a-z 0-9 from search results
+        let pattern = "[^A-Za-z0-9]+"
+        let result = trimmed.replacingOccurrences(of: pattern, with: "", options: [.regularExpression])
+        
+        //remove all white spaces
+        let formatted = result.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
         
         self.searchURL = base + formatted
     }
