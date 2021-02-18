@@ -46,18 +46,16 @@ class GoogleImageParser {
     }
     
     func getSearchResults(string: String) {
-        
+
         guard let myURL = URL(string: searchURL) else {
             print("Error: \(searchURL) doesn't seem to be a valid URL")
             return
         }
         
         do {
-            
             let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
             print("got html")
             parseHTMLString(htmlString: myHTMLString)
-    
             } catch let error {
             print("Error: \(error)")
         }
