@@ -2,7 +2,8 @@
 //  GoogleImageDownloadApp.swift
 //  GoogleImageDownload
 //
-//  Created by Stanislav Jidkov on 2021-02-16.
+//  Created by Stanislav Jidkov on 2020-04-17.
+//  Copyright © 2021 Stanislav Jidkov. All rights reserved.
 //
 
 import SwiftUI

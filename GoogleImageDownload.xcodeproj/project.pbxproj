@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79ABB3C425DDD834000EA5EF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABB3C325DDD834000EA5EF /* InfoView.swift */; };
+		79ABB3C925DDD88A000EA5EF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABB3C825DDD88A000EA5EF /* CardView.swift */; };
+		79ABB3CE25DDD8D1000EA5EF /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABB3CD25DDD8D1000EA5EF /* Color+Extensions.swift */; };
+		79ABB3D625DDE553000EA5EF /* TitleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABB3D525DDE553000EA5EF /* TitleCard.swift */; };
 		79C7B23F25DCCD1E00EFB3E5 /* GoogleImageDownloadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C7B23E25DCCD1E00EFB3E5 /* GoogleImageDownloadApp.swift */; };
 		79C7B24125DCCD1E00EFB3E5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C7B24025DCCD1E00EFB3E5 /* ContentView.swift */; };
 		79C7B24325DCCD1F00EFB3E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C7B24225DCCD1F00EFB3E5 /* Assets.xcassets */; };
@@ -15,6 +19,13 @@
 		79C7B24B25DCCD1F00EFB3E5 /* GoogleImageDownload.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79C7B24925DCCD1F00EFB3E5 /* GoogleImageDownload.xcdatamodeld */; };
 		79C7B25625DCCD2000EFB3E5 /* GoogleImageDownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C7B25525DCCD2000EFB3E5 /* GoogleImageDownloadTests.swift */; };
 		79C7B26125DCCD2000EFB3E5 /* GoogleImageDownloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C7B26025DCCD2000EFB3E5 /* GoogleImageDownloadUITests.swift */; };
+		79C7B27B25DCCDDC00EFB3E5 /* GoogleImageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C7B27A25DCCDDC00EFB3E5 /* GoogleImageParser.swift */; };
+		79D98ACF25DCE48C00456A1C /* SwiftUIWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D98ACC25DCE48C00456A1C /* SwiftUIWebView.swift */; };
+		79D98AD025DCE48C00456A1C /* MyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D98ACD25DCE48C00456A1C /* MyWebView.swift */; };
+		79D98AD125DCE48C00456A1C /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D98ACE25DCE48C00456A1C /* WebViewModel.swift */; };
+		79D98AD625DCE56D00456A1C /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D98AD525DCE56D00456A1C /* BrowserView.swift */; };
+		79D98ADE25DD66AD00456A1C /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D98ADD25DD66AD00456A1C /* ImageCard.swift */; };
+		79D98AE925DDA21A00456A1C /* FullImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D98AE825DDA21A00456A1C /* FullImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		79ABB3C325DDD834000EA5EF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		79ABB3C825DDD88A000EA5EF /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		79ABB3CD25DDD8D1000EA5EF /* Color+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		79ABB3D525DDE553000EA5EF /* TitleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCard.swift; sourceTree = "<group>"; };
 		79C7B23B25DCCD1D00EFB3E5 /* GoogleImageDownload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleImageDownload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C7B23E25DCCD1E00EFB3E5 /* GoogleImageDownloadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleImageDownloadApp.swift; sourceTree = "<group>"; };
 		79C7B24025DCCD1E00EFB3E5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +64,13 @@
 		79C7B25C25DCCD2000EFB3E5 /* GoogleImageDownloadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleImageDownloadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C7B26025DCCD2000EFB3E5 /* GoogleImageDownloadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleImageDownloadUITests.swift; sourceTree = "<group>"; };
 		79C7B26225DCCD2000EFB3E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79C7B27A25DCCDDC00EFB3E5 /* GoogleImageParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleImageParser.swift; sourceTree = "<group>"; };
+		79D98ACC25DCE48C00456A1C /* SwiftUIWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIWebView.swift; sourceTree = "<group>"; };
+		79D98ACD25DCE48C00456A1C /* MyWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWebView.swift; sourceTree = "<group>"; };
+		79D98ACE25DCE48C00456A1C /* WebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		79D98AD525DCE56D00456A1C /* BrowserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
+		79D98ADD25DD66AD00456A1C /* ImageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
+		79D98AE825DDA21A00456A1C /* FullImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +121,10 @@
 		79C7B23D25DCCD1D00EFB3E5 /* GoogleImageDownload */ = {
 			isa = PBXGroup;
 			children = (
-				79C7B23E25DCCD1E00EFB3E5 /* GoogleImageDownloadApp.swift */,
-				79C7B24025DCCD1E00EFB3E5 /* ContentView.swift */,
-				79C7B24225DCCD1F00EFB3E5 /* Assets.xcassets */,
+				79D98ADA25DD666600456A1C /* Views */,
+				79C7B27A25DCCDDC00EFB3E5 /* GoogleImageParser.swift */,
 				79C7B24725DCCD1F00EFB3E5 /* Persistence.swift */,
+				79C7B24225DCCD1F00EFB3E5 /* Assets.xcassets */,
 				79C7B24C25DCCD1F00EFB3E5 /* Info.plist */,
 				79C7B24925DCCD1F00EFB3E5 /* GoogleImageDownload.xcdatamodeld */,
 				79C7B24425DCCD1F00EFB3E5 /* Preview Content */,
@@ -134,6 +156,33 @@
 				79C7B26225DCCD2000EFB3E5 /* Info.plist */,
 			);
 			path = GoogleImageDownloadUITests;
+			sourceTree = "<group>";
+		};
+		79D98ACB25DCE48100456A1C /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				79D98ACD25DCE48C00456A1C /* MyWebView.swift */,
+				79D98ACC25DCE48C00456A1C /* SwiftUIWebView.swift */,
+				79D98ACE25DCE48C00456A1C /* WebViewModel.swift */,
+				79D98AD525DCE56D00456A1C /* BrowserView.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		79D98ADA25DD666600456A1C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				79ABB3CD25DDD8D1000EA5EF /* Color+Extensions.swift */,
+				79C7B23E25DCCD1E00EFB3E5 /* GoogleImageDownloadApp.swift */,
+				79C7B24025DCCD1E00EFB3E5 /* ContentView.swift */,
+				79D98AE825DDA21A00456A1C /* FullImageView.swift */,
+				79D98ADD25DD66AD00456A1C /* ImageCard.swift */,
+				79D98ACB25DCE48100456A1C /* WebView */,
+				79ABB3C325DDD834000EA5EF /* InfoView.swift */,
+				79ABB3C825DDD88A000EA5EF /* CardView.swift */,
+				79ABB3D525DDE553000EA5EF /* TitleCard.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,9 +315,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				79C7B24B25DCCD1F00EFB3E5 /* GoogleImageDownload.xcdatamodeld in Sources */,
+				79D98ACF25DCE48C00456A1C /* SwiftUIWebView.swift in Sources */,
+				79D98AD625DCE56D00456A1C /* BrowserView.swift in Sources */,
 				79C7B24825DCCD1F00EFB3E5 /* Persistence.swift in Sources */,
+				79D98AE925DDA21A00456A1C /* FullImageView.swift in Sources */,
 				79C7B24125DCCD1E00EFB3E5 /* ContentView.swift in Sources */,
+				79D98ADE25DD66AD00456A1C /* ImageCard.swift in Sources */,
+				79ABB3C925DDD88A000EA5EF /* CardView.swift in Sources */,
+				79ABB3D625DDE553000EA5EF /* TitleCard.swift in Sources */,
+				79D98AD025DCE48C00456A1C /* MyWebView.swift in Sources */,
 				79C7B23F25DCCD1E00EFB3E5 /* GoogleImageDownloadApp.swift in Sources */,
+				79C7B27B25DCCDDC00EFB3E5 /* GoogleImageParser.swift in Sources */,
+				79ABB3CE25DDD8D1000EA5EF /* Color+Extensions.swift in Sources */,
+				79D98AD125DCE48C00456A1C /* WebViewModel.swift in Sources */,
+				79ABB3C425DDD834000EA5EF /* InfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +498,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stanislavJidkov.GoogleImageDownload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -460,7 +520,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stanislavJidkov.GoogleImageDownload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
