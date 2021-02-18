@@ -21,21 +21,30 @@ struct ContentView: View {
     @State var searchTerm = ""
     @State var browserLink = "https://www.google.ca/search?client=safari"
     @State var showingSearchResults: Bool = false
-    
     @State var showingFullImage: Bool = false
+    @State var selectedItem: SearchResult?
+    
     @State var showingGoogleSearch: Bool = false
     @State var showingWebLink: Bool = false
     @State var showActionView = false
     @State var downloadingData = false
     @State private var showingDetail = false
     
+    
     var body: some View {
         NavigationView() {
             GeometryReader { geo in
                 VStack() {
                     NavigationLink(destination: BrowserView(model: WebViewModel(link: browserLink, type: "website", name: "google")), isActive: $showingGoogleSearch) { EmptyView() }
+                    if selectedItem != nil {
+                        NavigationLink(destination: FullImageView(image: UIImage(data: selectedItem!.imageData ?? Data()) ?? UIImage(), shareButtonAction: {
+                            actionSheet(data: selectedItem!.imageData)
+                        }), isActive: $showingFullImage) { EmptyView() }
+                        NavigationLink(destination: BrowserView(model: WebViewModel(link: selectedItem!.linkURLString ?? "error", type: "website", name: selectedItem!.title ?? "error")), isActive: $showingWebLink) { EmptyView() }
+                    }
+                    
                     //show Image results
-
+                    
                     if items.count > 0 && showingSearchResults {
                         ScrollView {
                             LazyVStack(alignment: .center, spacing: 0) {
@@ -48,18 +57,15 @@ struct ContentView: View {
                                 }.font(.largeTitle).padding()
                                 ForEach(items) { item in
                                     if dataHasImage(data: item.imageData) {
-                                        NavigationLink(destination: FullImageView(image: UIImage(data: item.imageData ?? Data()) ?? UIImage(), shareButtonAction: {
-                                            actionSheet(data: item.imageData)
-                                        }), isActive: $showingFullImage) { EmptyView() }
-                                        NavigationLink(destination: BrowserView(model: WebViewModel(link: item.linkURLString ?? "error", type: "website", name: item.title ?? "error")), isActive: $showingWebLink) { EmptyView() }
+                                        
                                         ImageCard(shareButtonAction: {
                                             actionSheet(data: item.imageData)
                                         }, deleteButtonAction: {
                                             deleteItem(item: item)
-                                        }, item: item, showingFullImage: $showingFullImage, showingWebLink: $showingWebLink).padding(5)
+                                        }, item: item, selectedItem: $selectedItem, showingFullImage: $showingFullImage, showingWebLink: $showingWebLink).padding(5)
                                     }
                                 }
-                            }
+                            }.id(UUID())
                         }
                     } else {
                         TitleCard()//.frame(width: geo.size.width, height: geo.size.height, alignment: .center)
@@ -261,6 +267,7 @@ struct ContentView: View {
             newItem.imageURLString = "\(imageURL)"
             newItem.linkURLString = "\(linkURL)"
             newItem.title = title
+            newItem.isActive = false
         }
     }
     

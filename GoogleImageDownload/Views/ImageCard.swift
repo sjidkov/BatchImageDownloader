@@ -36,9 +36,11 @@ struct ImageCard: View {
     let shareButtonAction: () -> Void
     let deleteButtonAction: () -> Void
     let item: SearchResult
+    @Binding var selectedItem: SearchResult?
     
     @Binding var showingFullImage: Bool
     @Binding var showingWebLink: Bool
+    
     
     var body: some View {
             VStack() {
@@ -74,7 +76,9 @@ struct ImageCard: View {
     //buttons
     var expandImageButton: some View   {
         Button(action: {
-            withAnimation {  self.showingFullImage.toggle() }
+            withAnimation {
+                self.selectedItem = item
+                self.showingFullImage.toggle() }
     }) {
             Image(systemName: "arrow.up.left.and.arrow.down.right").font(.title3).foregroundColor(.titleColor1)
         }
@@ -82,7 +86,9 @@ struct ImageCard: View {
     
     var viewArticleButton: some View   {
         Button(action: {
-        withAnimation {  self.showingWebLink.toggle() }
+        withAnimation {
+            self.selectedItem = item
+            self.showingWebLink.toggle() }
     }) {
             Image(systemName: "globe").font(.title3).foregroundColor(.titleColor2)
         }
@@ -111,6 +117,6 @@ struct ImageCard_Previews: PreviewProvider {
             print("test")
         }, deleteButtonAction: {
             print("test")
-        }, item: SearchResult(), showingFullImage: .constant(false), showingWebLink: .constant(false))
+        }, item: SearchResult(), selectedItem: .constant(SearchResult()), showingFullImage: .constant(false), showingWebLink: .constant(false))
     }
 }
